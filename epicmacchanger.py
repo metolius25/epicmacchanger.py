@@ -39,12 +39,9 @@ control_Mac(args.interface)
 final_mac = control_Mac(str(args.interface))
 
 
-try:
-    final_mac == args.mac_address
-
-except:
-    print("An error that wasn't supposed to occur, occured. Try again.")
-
+if (final_mac == args.mac_address):
+    print(f"Program worked successfully. The new MAC Address is {final_mac} ")
 else:
-    print(f"Program worked successfully. The new MAC Address is {control_Mac(str(args.interface))} ")
+    print(f"It appears the mac address you typed ({args.mac_address}) is invalid. Try again")
+    
 
