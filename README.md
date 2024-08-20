@@ -5,4 +5,4 @@ Epic Mac Changer lets you change your MAC Address with a new one that you will s
 
 - epicmacchanger.py -i [eth0, wlan0 etc] -m [xx:xx:xx:xx:xx, Hexadecimal]
 
-(Might kill off your connection. In that case a restart is needed and will revert back to your original MAC address in that case.)
+(Not recommended to use on virtual machines. Will probably not work and kill your connection. Restart your computer if that happens.)
