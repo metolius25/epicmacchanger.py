@@ -7,47 +7,7 @@ import re
 def get_Input():
     parser = agp.ArgumentParser(
                     prog='epicmacchanger.py',
-                    description='Simple Python app to specify a new MAC address. Likely not going to work on virtual machines. Restart your PC if kills your internet connection.',
-                    epilog='Example usage: python3 epicmacchanger.py -i eth0 -m 00:H1:E2:L3:L4:O5 (Hexadecimal characters only)')
-    parser.add_argument("-i", "--interface", dest="interface", help="Choose the network interface you want to work on\n", required=True) 
-    parser.add_argument("-m", "--mac", dest="mac_address", help="Write new MAC Address\n", required=True)
-    (args) = parser.parse_args()
-    return args
-
-def change_Address(interface_var, mac_var):
-    subprocess.call(["sudo", "ip", "link", "set", "dev",interface_var, "down"])
-    subprocess.call(["sudo", "ip", "link", "set", "dev", interface_var, "address", mac_var])
-    subprocess.call(["sudo", "ip", "link", "set", "dev", interface_var, "up"])
-
-
-def control_Mac(iface):
-
-    ip_addr = subprocess.check_output(["sudo", "ifconfig", iface])
-    new_mac = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ip_addr))
-    if new_mac:
-        output = new_mac.group(0)
-        return output
-    else:
-        return None
-
-(args) = get_Input()
-change_Address(args.interface, args.mac_address)
-control_Mac(args.interface)
-
-
-final_mac = control_Mac(str(args.interface))
-
-
-#!/usr/bin/python3
-import subprocess
-import argparse as agp
-import re
-
-
-def get_Input():
-    parser = agp.ArgumentParser(
-                    prog='epicmacchanger.py',
-                    description='Simple Python app to specify a new MAC address. Likely not going to work on virtual machines. Restart your PC if kills your internet connection.',
+                    description='Simple Python app to specify a new MAC address. Likely not going to work on virtual machines. Restart your PC if it kills your internet connection.',
                     epilog='Example usage: python3 epicmacchanger.py -i eth0 -m 00:H1:E2:L3:L4:O5 (Hexadecimal characters only)')
     parser.add_argument("-i", "--interface", dest="interface", help="Choose the network interface you want to work on\n", required=True) 
     parser.add_argument("-m", "--mac", dest="mac_address", help="Write new MAC Address\n", required=True)
